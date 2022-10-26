@@ -1,29 +1,26 @@
 <div class="form-card">
   <h2>Connexion</h2>
   <form [formGroup]="loginForm">
-    <div class="form-group">
-      <label for="login">Identifiant</label>
-      <input type="text" id="login" formControlName="login">
+    <div>
+      <mat-form-field>
+        <mat-label for="login">Identifiant</mat-label>
+        <input matInput type="text" id="login" formControlName="login">
+      </mat-form-field>
+      <div class="form-group" *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
+        <crm-help [field]="loginForm.get('login')!" [errorMessages]="errorMessagesLogin" class="error-control"></crm-help>
+      </div>
     </div>
-    <div class="form-group" *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched">
-      <span *ngIf="loginForm.get('login')?.invalid && loginForm.get('login')?.touched" class="error-control">
-        <span *ngIf="loginForm.get('login')?.errors?.['required']">Identifiant obligatoire. </span>
-        <span *ngIf="loginForm.get('login')?.errors?.['minlength']">3 caractères minimum. </span>
-      </span>
-    </div>
-    <div class="form-group">
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="password">
-    </div>
-    <div class="form-group" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-      <span *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-control">
-        <span *ngIf="loginForm.get('password')?.errors?.['required']">Identifiant obligatoire. </span>
-        <span *ngIf="loginForm.get('password')?.errors?.['minlength']">3 caractères minimum. </span>
-        <span *ngIf="loginForm.get('password')?.errors?.['no$InPassword']">Pas de $ dans le mot de passe. </span>
-      </span>
+    <div>
+      <mat-form-field>
+        <mat-label for="password">Mot de passe</mat-label>
+        <input matInput type="password" id="password" formControlName="password">
+      </mat-form-field>
+      <div class="form-group" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <crm-help [field]="loginForm.get('password')!" [errorMessages]="errorMessagesPassword" class="error-control"></crm-help>
+      </div>
     </div>
     <div class="action-buttons">
-      <button (click)="login()" [disabled]="loginForm.invalid">Connexion</button>
+      <button mat-button color="primary" (click)="login()" [disabled]="loginForm.invalid">Connexion</button>
     </div>
   </form>
 </div>

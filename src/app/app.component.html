@@ -1,17 +1,13 @@
 <div>
-  <h1>{{ title }}</h1>
+  <mat-toolbar color="primary">
+    <span>{{ title }}</span>
+    <span class="fill-space"></span>
+    <span>Buttons</span>
+  </mat-toolbar>
 </div>
 
 <crm-login></crm-login>
 
-<div>
-  <span [ngClass]="maClass">{{message}}</span>
-</div>
-<div>
-  <button (click)="changeMessage()">Click moi</button>
-</div>
-<div>
-  <ul>
-    <li *ngFor="let pomme of pommes">{{pomme}}</li>
-  </ul>
-</div>
+<!--
+  <crm-dummy label="Pomme" (finished)="onFinished($event)"></crm-dummy>
+-->

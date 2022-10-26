@@ -9,6 +9,15 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  errorMessagesLogin:{[key:string]: string} = {
+    required: 'Identifiant Obligatoire',
+    minlength: '3 caractères minimum'
+  };
+  errorMessagesPassword:{[key:string]: string} = {
+    required: 'Identifiant Obligatoire',
+    minlength: '3 caractères minimum',
+    no$InPassword: 'Pas de $ dans le mot de passe'
+  };
 
   constructor() {
     this.loginForm = new FormGroup({
@@ -31,6 +40,6 @@ function checkNoInPassword(c:AbstractControl) : ValidationErrors | null {
     return null;
   }
   return {
-    no$InPassword:true
+    no$InPassword: true
   }
 }
