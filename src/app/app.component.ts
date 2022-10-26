@@ -7,17 +7,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = "angularCRM";
-  message = "C'est cool.";
+  message = "C'est Rouge";
   maClass = 'textRed';
-  fruits= ['Apple', 'Pear', 'Cherry'];
+  pommes= ['Granny', 'Golden', 'Gala', 'Pink Lady', 'Canada', 'Belchard', 'Fuji', 'Red Delicious', 'Jazz'];
 
   changeMessage(): void {
-    if(this.message === "C'est cool.") {
-      this.message= "Ça marche!";
-      this.maClass = 'textYellow';
-    } else {
-      this.message= "C'est cool.";
-      this.maClass = 'textRed';
+    switch(this.message) {
+      case "C'est Rouge": {
+        this.message= "C'est Jaune";
+        this.maClass = 'textYellow';
+        break;
+      }
+      case "C'est Jaune": {
+        this.message= "C'est Vert";
+        this.maClass = 'textGreen';
+        break;
+      }
+      case "C'est Vert": {
+        this.message= "C'est Rouge";
+        this.maClass = 'textRed';
+        break;
+      }
     }
 
   }
