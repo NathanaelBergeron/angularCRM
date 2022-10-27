@@ -1,12 +1,12 @@
 <div>
   <mat-toolbar color="primary">
-    <span>{{ title }}</span>
+    <span>{{title}}</span>
     <span class="fill-space"></span>
     <span>
-      <a mat-icon-button matTooltip="Home" [routerLink]="'/home'" [routerLinkActive]="'is-active'">
+      <a mat-icon-button routerLink="/home" routerLinkActive="is-active" matTooltip="Home">
         <mat-icon>home</mat-icon>
       </a>
-      <a mat-icon-button matTooltip="Login" [routerLink]="'/login'" [routerLinkActive]="'is-active'">
+      <a mat-icon-button routerLink="/login" routerLinkActive="is-active" matTooltip="Login">
         <mat-icon>person</mat-icon>
       </a>
     </span>
