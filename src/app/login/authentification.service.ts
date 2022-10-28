@@ -29,7 +29,7 @@ export class AuthentificationService {
 
           sessionStorage.setItem(KEY_USER, JSON.stringify(this.user));
           sessionStorage.setItem(JWT_TOKEN, this.jwt_token);
-          
+
           return this.user;
       })
     );
@@ -46,6 +46,7 @@ export class AuthentificationService {
   disconnect(): void {
     sessionStorage.clear();
     this.user = undefined;
+    this.jwt_token = undefined;
   }
 
 
