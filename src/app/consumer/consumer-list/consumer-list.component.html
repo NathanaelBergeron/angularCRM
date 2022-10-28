@@ -1,0 +1,32 @@
+<div>
+  <mat-form-field>
+    <mat-label for="search">Recherche</mat-label>
+    <input matInput type="text" [(ngModel)]="search" (keyup)="doSearch()">
+  </mat-form-field>
+  <a mat-icon-button routerLink="/consumer" matTooltip="add">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <td>Civilité</td>
+        <td>Prénom</td>
+        <td>Nom</td>
+        <td>N° Téléphone</td>
+        <td>E-mail</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consumer of consumers | async">
+        <td>{{consumer.civility}}</td>
+        <td>{{consumer.firstname}}</td>
+        <td>{{consumer.lastname}}</td>
+        <td>{{consumer.phone | phone}}</td>
+        <td>{{consumer.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
