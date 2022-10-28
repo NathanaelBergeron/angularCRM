@@ -1,16 +1,18 @@
 import { User } from './model/user';
 import { AuthentificationService } from './authentification.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'crm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
+  private subs: Subscription[] = [];
   loginForm: FormGroup;
   errorMessagesLogin:{[key:string]: string} = {
     required: 'Identifiant Obligatoire',
@@ -30,14 +32,19 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.subs.forEach(sub => sub.unsubscribe());
+  }
+
   ngOnInit(): void {
   }
 
   login(): void {
-    const user: User = this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password);
-    if(user){
-      this.router.navigateByUrl('home');
-    }
+    this.subs.push(this.authent.authentUser(this.loginForm.value.login, this.loginForm.value.password).subscribe({
+      next: (user: User) => this.router.navigateByUrl('/home'),
+      error: (error: Error) => console.error("Erreur de connexion : login ou mot de passe invalide."),
+      complete: () => {}
+    }));
   }
 
 }
